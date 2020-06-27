@@ -10,7 +10,6 @@ public class BoardTest {
     @Test
     public void shouldInitialiseTheBoardCorrectlyBasedOnSize() {
         Board board = new Board(1);
-        board.initialiseBoard();
         Spot[][] boardCells = board.getBoardCells();
         assertEquals(1, boardCells.length);
         Spot spot = boardCells[0][0];
@@ -22,7 +21,6 @@ public class BoardTest {
     @Test
     public void shouldInitialiseBoardForSize8() {
         Board board = new Board(8);
-        board.initialiseBoard();
         Spot[][] boardCells = board.getBoardCells();
         assertEquals(8, boardCells.length);
         Spot spot = boardCells[7][7];
@@ -33,5 +31,13 @@ public class BoardTest {
         spot = boardCells[0][0];
         assertEquals("A1", spot.getPosition());
         assertNull(spot.getPiece());
+    }
+
+    @Test
+    public void shouldGetSpotBasedOnPosition() throws Exception {
+        Board board = new Board(8);
+        Spot spot = board.getSpot("D5");
+        assertEquals(3,spot.getX());
+        assertEquals(4,spot.getY());
     }
 }

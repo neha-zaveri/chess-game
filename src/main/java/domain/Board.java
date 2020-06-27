@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Arrays;
+
 public class Board {
     private Spot[][] boardCells;
     private int size;
@@ -9,6 +11,7 @@ public class Board {
 
     public Board(int size) {
         this.size = size;
+        this.initialiseBoard();
     }
 
     public Spot[][] getBoardCells() {
@@ -24,7 +27,7 @@ public class Board {
         return boardCells[x][y];
     }
 
-    public void initialiseBoard() {
+    private void initialiseBoard() {
         boardCells = new Spot[size][size];
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
@@ -33,5 +36,13 @@ public class Board {
                 boardCells[i][j] = new Spot(i, j, position, null);
             }
         }
+    }
+
+    public Spot getSpot(String position) throws Exception {
+        return Arrays.stream(boardCells)
+                .flatMap(Arrays::stream)
+                .filter(spot -> spot.getPosition().equalsIgnoreCase(position))
+                .findFirst()
+                .orElseThrow(() -> new Exception("Spot not found"));
     }
 }

@@ -13,6 +13,13 @@ public class Spot {
         this.piece = piece;
     }
 
+    public Spot(Piece piece, String position) {
+        this.x = position.charAt(0) - 65;
+        this.y = position.charAt(1) - 49;
+        this.position = position;
+        this.piece = piece;
+    }
+
     public int getX() {
         return x;
     }
