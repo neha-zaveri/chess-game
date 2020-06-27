@@ -1,18 +1,15 @@
 package domain.pieces;
 
-import domain.Direction;
+import domain.Cell;
 import domain.Piece;
 
 import java.util.List;
 
 public class Horse extends Piece {
+
     @Override
-    public List<Direction> getAllowedMovementDirection() {
+    public List<String> getPossibleMoves(Cell[][] cells, Cell currentCell) {
         return null;
     }
 
-    @Override
-    public int getNoOfStepsAllowedAtATime() {
-        return 0;
-    }
 }
