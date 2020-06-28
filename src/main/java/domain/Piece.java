@@ -1,12 +1,18 @@
 package domain;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public abstract class Piece {
-    public abstract List<String> getPossibleMoves(Cell[][] cells, Cell currentCell);
+    public abstract List<String> getPossibleMoves(Board board, Cell currentCell);
 
-    public boolean isValidMove(int length, int xPos, int yPos) {
-        return (xPos <= length - 1) && (yPos <= length - 1)
-                && (xPos > -1) && (yPos > -1);
+    public List<String> getPossibleCellNumbers(List<Cell> possibleMoves) {
+        return possibleMoves.stream()
+                .filter(Objects::nonNull)
+                .map(Cell::getCellNumber)
+                .distinct()
+                .sorted()
+                .collect(Collectors.toList());
     }
 }

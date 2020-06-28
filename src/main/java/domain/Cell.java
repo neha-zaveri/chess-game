@@ -3,12 +3,13 @@ package domain;
 public class Cell {
     private int x;
     private int y;
-    private String position;
+    private String cellNumber;
+    private Piece piece;
 
-    public Cell(int x, int y, String position) {
+    public Cell(int x, int y, String cellNumber) {
         this.x = x;
         this.y = y;
-        this.position = position;
+        this.cellNumber = cellNumber;
     }
 
     public int getX() {
@@ -19,7 +20,15 @@ public class Cell {
         return y;
     }
 
-    public String getPosition() {
-        return position;
+    public String getCellNumber() {
+        return cellNumber;
+    }
+
+    public Piece getPiece() {
+        return piece;
+    }
+
+    public void setPiece(Piece piece) {
+        this.piece = piece;
     }
 }

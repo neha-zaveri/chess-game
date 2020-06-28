@@ -14,6 +14,12 @@ public class Board {
         return cells;
     }
 
+    public Cell getCellByIndex(int x, int y) {
+        if (x > -1 && x < size && y > -1 && y < size)
+            return cells[x][y];
+        return null;
+    }
+
     private void initialiseBoard() {
         cells = new Cell[size][size];
         for (int i = 0; i < size; i++) {
@@ -25,10 +31,10 @@ public class Board {
         }
     }
 
-    public Cell getSpot(String position) throws Exception {
+    public Cell getCellByCellNumber(String cellNumber) throws Exception {
         return Arrays.stream(cells)
                 .flatMap(Arrays::stream)
-                .filter(cell -> cell.getPosition().equalsIgnoreCase(position))
+                .filter(cell -> cell.getCellNumber().equalsIgnoreCase(cellNumber))
                 .findFirst()
                 .orElseThrow(() -> new Exception("Spot not found"));
     }

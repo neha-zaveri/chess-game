@@ -1,7 +1,7 @@
 package domain.pieces;
 
+import domain.Board;
 import domain.Cell;
-import domain.Direction;
 import domain.Piece;
 
 import java.util.Arrays;
@@ -11,12 +11,13 @@ import java.util.stream.Collectors;
 
 public class Queen extends Piece {
     @Override
-    public List<String> getPossibleMoves(Cell[][] cells, Cell currentCell) {
+    public List<String> getPossibleMoves(Board board, Cell currentCell) {
+        Cell[][] cells = board.getCells();
         return Arrays.stream(cells)
                 .map(Arrays::asList)
                 .flatMap(Collection::stream)
-                .filter(cell -> !cell.getPosition().equalsIgnoreCase(currentCell.getPosition()))
-                .map(Cell::getPosition)
+                .filter(cell -> !cell.getCellNumber().equalsIgnoreCase(currentCell.getCellNumber()))
+                .map(Cell::getCellNumber)
                 .distinct()
                 .sorted()
                 .collect(Collectors.toList());
