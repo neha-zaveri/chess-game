@@ -1,7 +1,6 @@
 import domain.Board;
 import domain.Cell;
 import domain.Piece;
-import domain.PieceFactory;
 import domain.PieceType;
 
 import java.util.Arrays;
@@ -17,7 +16,7 @@ public class Application {
                 System.out.println("Please provide piece type and cell number");
             } else {
                 String pieceType = inputValues[0].toUpperCase();
-                Piece piece = new PieceFactory().getPieceByType(PieceType.valueOf(pieceType));
+                Piece piece = Piece.createPieceByType(PieceType.valueOf(pieceType));
                 Board board = new Board();
                 List<String> possibleMoves = piece.getPossibleMoves(board, getCellByCellNumber(board, inputValues[1]));
                 System.out.println(String.join(",", possibleMoves));

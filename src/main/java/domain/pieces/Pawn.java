@@ -2,6 +2,8 @@ package domain.pieces;
 
 import domain.Board;
 import domain.Cell;
+import domain.Moves;
+import domain.Moves.Direction;
 import domain.Piece;
 
 import java.util.ArrayList;
@@ -15,9 +17,9 @@ public class Pawn extends Piece {
         int currentYPos = currentCell.getColumnIndex();
 
         List<Cell> possibleMoves = new ArrayList<>();
-        possibleMoves.add(board.getCellByIndex(currentXPos + 1, currentYPos));
+        possibleMoves.addAll(Moves.vertical(board, currentXPos, currentYPos, Direction.FORWARD));
         if (isPiecePresent(board.getCellByIndex(currentXPos + 1, currentYPos + 1)))
-            possibleMoves.add(board.getCellByIndex(currentXPos + 1, currentYPos + 1));
+            possibleMoves.addAll(Moves.diagonal(board, currentXPos, currentYPos, Direction.FORWARD, 1));
         return getPossibleCellNumbers(possibleMoves);
     }
 

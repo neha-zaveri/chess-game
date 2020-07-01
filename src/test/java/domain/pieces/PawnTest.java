@@ -55,7 +55,7 @@ public class PawnTest {
         Cell diagonalCell = cells[4][5];
         diagonalCell.setPiece(new King());
         List<String> possibleMoves = pawn.getPossibleMoves(board, new Cell(3, 4, "D5"));
-        assertEquals(2, possibleMoves.size());
-        assertEquals("E5,E6", String.join(",", possibleMoves));
+        assertEquals(3, possibleMoves.size());
+        assertEquals("E4,E5,E6", String.join(",", possibleMoves));
     }
 }
