@@ -11,8 +11,8 @@ public class Horse extends Piece {
 
     @Override
     public List<String> getPossibleMoves(Board board, Cell currentCell) {
-        int currentXPos = currentCell.getX();
-        int currentYPos = currentCell.getY();
+        int currentXPos = currentCell.getRowIndex();
+        int currentYPos = currentCell.getColumnIndex();
         Cell[][] cells = board.getCells();
         List<Cell> possibleMoves = new ArrayList<>();
         for (int i = 1; i < cells.length; i++) {

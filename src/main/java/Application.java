@@ -14,7 +14,8 @@ public class Application {
             if (inputValues.length != 2) {
                 System.out.println("Please provide piece type and cell number");
             } else {
-                Piece piece = new PieceFactory().getPieceByType(PieceType.valueOf(inputValues[0].toUpperCase()));
+                String pieceType = inputValues[0].toUpperCase();
+                Piece piece = new PieceFactory().getPieceByType(PieceType.valueOf(pieceType));
                 Board board = new Board();
                 List<String> possibleMoves = piece.getPossibleMoves(board, board.getCellByCellNumber(inputValues[1]));
                 System.out.println(String.join(",", possibleMoves));

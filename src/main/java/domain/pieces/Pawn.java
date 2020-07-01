@@ -11,8 +11,8 @@ public class Pawn extends Piece {
 
     @Override
     public List<String> getPossibleMoves(Board board, Cell currentCell) {
-        int currentXPos = currentCell.getX();
-        int currentYPos = currentCell.getY();
+        int currentXPos = currentCell.getRowIndex();
+        int currentYPos = currentCell.getColumnIndex();
 
         List<Cell> possibleMoves = new ArrayList<>();
         possibleMoves.add(board.getCellByIndex(currentXPos + 1, currentYPos));

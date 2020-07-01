@@ -1,23 +1,23 @@
 package domain;
 
 public class Cell {
-    private int x;
-    private int y;
+    private int rowIndex;
+    private int columnIndex;
     private String cellNumber;
     private Piece piece;
 
-    public Cell(int x, int y, String cellNumber) {
-        this.x = x;
-        this.y = y;
+    public Cell(int rowIndex, int columnIndex, String cellNumber) {
+        this.rowIndex = rowIndex;
+        this.columnIndex = columnIndex;
         this.cellNumber = cellNumber;
     }
 
-    public int getX() {
-        return x;
+    public int getRowIndex() {
+        return rowIndex;
     }
 
-    public int getY() {
-        return y;
+    public int getColumnIndex() {
+        return columnIndex;
     }
 
     public String getCellNumber() {

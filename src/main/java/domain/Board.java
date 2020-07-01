@@ -14,19 +14,19 @@ public class Board {
         return cells;
     }
 
-    public Cell getCellByIndex(int x, int y) {
-        if (x > -1 && x < size && y > -1 && y < size)
-            return cells[x][y];
+    public Cell getCellByIndex(int rowIndex, int colIndex) {
+        if (rowIndex > -1 && rowIndex < size && colIndex > -1 && colIndex < size)
+            return cells[rowIndex][colIndex];
         return null;
     }
 
     private void initialiseBoard() {
         cells = new Cell[size][size];
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                char positionIndex = (char) (i + 65);
-                String position = String.valueOf(positionIndex).concat(String.valueOf(j + 1));
-                cells[i][j] = new Cell(i, j, position);
+        for (int rowIndex = 0; rowIndex < size; rowIndex++) {
+            for (int columnIndex = 0; columnIndex < size; columnIndex++) {
+                char rowIndexInCharacter = (char) (rowIndex + 65);
+                String position = String.valueOf(rowIndexInCharacter).concat(String.valueOf(columnIndex + 1));
+                cells[rowIndex][columnIndex] = new Cell(rowIndex, columnIndex, position);
             }
         }
     }
@@ -36,6 +36,6 @@ public class Board {
                 .flatMap(Arrays::stream)
                 .filter(cell -> cell.getCellNumber().equalsIgnoreCase(cellNumber))
                 .findFirst()
-                .orElseThrow(() -> new Exception("Spot not found"));
+                .orElseThrow(() -> new Exception("Cell not found"));
     }
 }

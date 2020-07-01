@@ -29,7 +29,7 @@ public class BoardTest {
     public void shouldGetSpotBasedOnPosition() throws Exception {
         Board board = new Board();
         Cell cell = board.getCellByCellNumber("D5");
-        assertEquals(3, cell.getX());
-        assertEquals(4, cell.getY());
+        assertEquals(3, cell.getRowIndex());
+        assertEquals(4, cell.getColumnIndex());
     }
 }

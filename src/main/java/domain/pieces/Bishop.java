@@ -10,8 +10,8 @@ import java.util.List;
 public class Bishop extends Piece {
     @Override
     public List<String> getPossibleMoves(Board board, Cell currentCell) {
-        int xIndexOfCurrentCell = currentCell.getX();
-        int yIndexOfCurrentCell = currentCell.getY();
+        int xIndexOfCurrentCell = currentCell.getRowIndex();
+        int yIndexOfCurrentCell = currentCell.getColumnIndex();
         List<Cell> allowedCells = new ArrayList<>();
         Cell[][] cells = board.getCells();
         for (int i = 1; i < cells.length; i++) {
