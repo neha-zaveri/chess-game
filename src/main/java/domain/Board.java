@@ -1,7 +1,5 @@
 package domain;
 
-import java.util.Arrays;
-
 public class Board {
     private Cell[][] cells;
     private int size = 8;
@@ -29,13 +27,5 @@ public class Board {
                 cells[rowIndex][columnIndex] = new Cell(rowIndex, columnIndex, position);
             }
         }
-    }
-
-    public Cell getCellByCellNumber(String cellNumber) throws Exception {
-        return Arrays.stream(cells)
-                .flatMap(Arrays::stream)
-                .filter(cell -> cell.getCellNumber().equalsIgnoreCase(cellNumber))
-                .findFirst()
-                .orElseThrow(() -> new Exception("Cell not found"));
     }
 }
