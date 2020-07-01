@@ -16,8 +16,7 @@ public class Pawn extends Piece {
         int currentXPos = currentCell.getRowIndex();
         int currentYPos = currentCell.getColumnIndex();
 
-        List<Cell> possibleMoves = new ArrayList<>();
-        possibleMoves.addAll(Moves.vertical(board, currentXPos, currentYPos, Direction.FORWARD));
+        List<Cell> possibleMoves = new ArrayList<>(Moves.vertical(board, currentXPos, currentYPos, Direction.FORWARD));
         if (isPiecePresent(board.getCellByIndex(currentXPos + 1, currentYPos + 1)))
             possibleMoves.addAll(Moves.diagonal(board, currentXPos, currentYPos, Direction.FORWARD, 1));
         return getPossibleCellNumbers(possibleMoves);
