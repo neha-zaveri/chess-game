@@ -12,12 +12,6 @@ public class Board {
         return cells;
     }
 
-    public Cell getCellByIndex(int rowIndex, int colIndex) {
-        if (rowIndex > -1 && rowIndex < size && colIndex > -1 && colIndex < size)
-            return cells[rowIndex][colIndex];
-        return null;
-    }
-
     private void initialiseBoard() {
         cells = new Cell[size][size];
         for (int rowIndex = 0; rowIndex < size; rowIndex++) {

@@ -7,21 +7,23 @@ import domain.pieces.Pawn;
 import domain.pieces.Queen;
 import domain.pieces.Rook;
 
+import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 public abstract class Piece {
-    public abstract List<String> getPossibleMoves(Board board, Cell currentCell);
-
-    public List<String> getPossibleCellNumbers(List<Cell> possibleMoves) {
-        return possibleMoves.stream()
-                .filter(Objects::nonNull)
+    public List<String> getPossibleMoves(Board board, Cell currentCell) {
+        Cell[][] cells = board.getCells();
+        return Arrays.stream(cells)
+                .flatMap(Arrays::stream)
+                .filter(cell -> !cell.getCellNumber().equals(currentCell.getCellNumber()))
+                .filter(cell -> isValidMove(cell, currentCell))
                 .map(Cell::getCellNumber)
                 .distinct()
-                .sorted()
                 .collect(Collectors.toList());
     }
+
+    public abstract boolean isValidMove(Cell cell, Cell currentCell);
 
     public static Piece createPieceByType(PieceType pieceType) throws Exception {
         switch (pieceType) {

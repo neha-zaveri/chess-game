@@ -1,29 +1,27 @@
 package domain.pieces;
 
-import domain.Board;
 import domain.Cell;
-import domain.Moves;
-import domain.Moves.Direction;
 import domain.Piece;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Pawn extends Piece {
-
     @Override
-    public List<String> getPossibleMoves(Board board, Cell currentCell) {
-        int currentXPos = currentCell.getRowIndex();
-        int currentYPos = currentCell.getColumnIndex();
+    public boolean isValidMove(Cell cell, Cell currentCell) {
+        return isVerticalMove(cell, currentCell) ||
+                (isDiagonalMove(cell, currentCell) &&
+                        isPiecePresent(cell));
+    }
 
-        List<Cell> possibleMoves = new ArrayList<>(Moves.vertical(board, currentXPos, currentYPos, Direction.FORWARD));
-        if (isPiecePresent(board.getCellByIndex(currentXPos + 1, currentYPos + 1)))
-            possibleMoves.addAll(Moves.diagonal(board, currentXPos, currentYPos, Direction.FORWARD, 1));
-        return getPossibleCellNumbers(possibleMoves);
+    private boolean isDiagonalMove(Cell cell, Cell currentCell) {
+        int rowIndexDiff = cell.getRowIndex() - currentCell.getRowIndex();
+        return rowIndexDiff == 1 && cell.getColumnIndex() - currentCell.getColumnIndex() == 1;
+    }
+
+    private boolean isVerticalMove(Cell cell, Cell currentCell) {
+        return cell.getRowIndex() - currentCell.getRowIndex() == 1 &&
+                cell.getColumnIndex() == currentCell.getColumnIndex();
     }
 
     private boolean isPiecePresent(Cell cell) {
         return cell != null && cell.getPiece() != null;
     }
-
 }
